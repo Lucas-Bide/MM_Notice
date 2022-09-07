@@ -1,4 +1,4 @@
-from datetime import datetime
+# from datetime import datetime
 import requests, json, sys, os
 import xml.etree.ElementTree as ET
 import smtplib, ssl
@@ -67,9 +67,9 @@ if __name__ == "__main__":
 	
 	# Only run on Wednesday (2) and Saturday (5) - only necessary to use a free tier host service.
 	# Will run at, say, 5 am, to avoid congested servers on high jackpots plays.
-	day = datetime.now().weekday()
-	if (day != 2 and day != 5):
-		sys.exit()
+	# day = datetime.now().weekday()
+	# if (day != 2 and day != 5):
+	#	sys.exit()
 	
 	jsn = retrieve_json()
 	# Jackpot new.
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 		message = "Start buying MM. The current jackpot is ${:,}".format(jew)
 		send_sms_via_email(message)
 
-	if jsn["Jackpot"][0]["Winners"] > 0: # Text to alert that the jackpot was won.
+	if jsn["Jackpot"]["Winners"] > 0: # Text to alert that the jackpot was won.
 		message = "The MM jackpot was won. Prize: ${:,}. \nNumbers: {} {} {} {} {} {}\n Winners: {}".format(jold, jsn["Drawing"]["N1"], jsn["Drawing"]["N2"], jsn["Drawing"]["N3"], jsn["Drawing"]["N4"], jsn["Drawing"]["N5"], jsn["Drawing"]["MBall"], jsn["Jackpot"]["Winners"])
 		send_sms_via_email(message)
 
