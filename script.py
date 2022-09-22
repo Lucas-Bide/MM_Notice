@@ -7,7 +7,7 @@ from email.message import EmailMessage
 # Request in browser if you ever need to see keys.
 url = "https://www.megamillions.com/cmspages/utilservice.asmx/GetLatestDrawData"
 record = "jackpot.txt"
-record_initial_value = "10_000_000"
+record_initial_value = "10000000" # 10-000-000.
 
 # Retrieve the lotto data for the last play.
 def retrieve_json():
