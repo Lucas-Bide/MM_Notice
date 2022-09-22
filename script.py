@@ -76,8 +76,13 @@ if __name__ == "__main__":
 	jew = int(jsn["Jackpot"]["NextPrizePool"])
 	# Jackpot old.
 	jold = update_record(jew)
-
-	if jold < 300000000 and jew >= 300000000: # Text to alert start of buy season.
+	
+	if (jold < 1_000_000_000 and jew >= 1_000_000_000) or \
+		(jold < 800_000_000 and jew >= 800_000_000) or \
+		(jold < 500_000_000 and jew >= 500_000_000): 
+		message = "The current jackpot is ${:,}".format(jew)
+		send_sms_via_email(message)
+	elif jold < 300_000_000 and jew >= 300_000_000: # Text to alert start of buy season.
 		message = "Start buying MM. The current jackpot is ${:,}".format(jew)
 		send_sms_via_email(message)
 
